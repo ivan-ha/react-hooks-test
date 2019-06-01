@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useRandomUsers } from "./useRandomUsers";
 
-function App() {
+const App = () => {
+  const users = useRandomUsers();
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ol>
+          {users &&
+            users.map(({ name, login }) => (
+              <li key={login.uuid}>
+                {`${name.title} ${name.first} ${name.last}`}
+              </li>
+            ))}
+        </ol>
       </header>
     </div>
   );
-}
+};
 
 export default App;
